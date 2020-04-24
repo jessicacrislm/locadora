@@ -1,0 +1,13 @@
+com\locadora\entities\Filme.class
+com\locadora\entities\Locacao.class
+com\locadora\enumerators\TipoFilme.class
+com\locadora\enumerators\TipoPreco.class
+com\locadora\enumerators\GeneroFilme.class
+com\locadora\entities\Usuario.class
+com\locadora\enumerators\StatusLocacao.class
+com\locadora\enumerators\GeneroUsuario.class
+com\locadora\entities\Locacao$LocacaoBuilder.class
+com\locadora\enumerators\TipoDuracao.class
+com\locadora\entities\Usuario$UsuarioBuilder.class
+com\locadora\entities\Filme$FilmeBuilder.class
+com\locadora\enumerators\StatusFilme.class
