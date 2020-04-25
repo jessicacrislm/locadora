@@ -1,16 +1,18 @@
-package com.locadora.service;
+package com.locadora.services;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.locadora.repositories.AbstractRepository;
+
 @Transactional(propagation = Propagation.REQUIRED)
 public abstract class CrudService<T> {
+	
 	@Autowired
-	private JpaRepository<T, Long> repository;
+	private AbstractRepository<T, Long> repository;
 
 	public T createOrUpdate(T entity) {
 		if (entity != null) {

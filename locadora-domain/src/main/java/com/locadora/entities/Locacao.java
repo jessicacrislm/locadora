@@ -21,45 +21,51 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.locadora.enumerators.StatusLocacao;
+import com.locadora.multitenancy.AbstractTenant;
+import com.locadora.utils.Nomenclatura;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@Builder
+@Getter @Setter @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "tb_locacao")
+@Table(name = Nomenclatura.TABELA + "locacao")
 @SuppressWarnings("serial")
-public class Locacao implements Serializable {
+public class Locacao extends AbstractTenant<Long> implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "locacao_id_generator")
-	@SequenceGenerator(name = "locacao_id_generator", sequenceName = "locacao_id_seq", allocationSize = 1)
-	@Column(name = "id_locacao", nullable = false)
+	@Column(name = Nomenclatura.CHAVE_PRIMARIA + "locacao", nullable = false)
+	@SequenceGenerator(name = "locacao_id" + Nomenclatura.SEQUENCIA, sequenceName = "locacao_id" + Nomenclatura.SEQUENCIA, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "locacao_id" + Nomenclatura.SEQUENCIA)
 	private Long id;
 
 	@NotNull
-	@JoinColumn(name = "id_filme", nullable = false, foreignKey = @ForeignKey(name = "fk_locacao_filme"))
+	@JoinColumn(name = Nomenclatura.CHAVE_PRIMARIA + "filme", nullable = false, 
+				foreignKey = @ForeignKey(name = Nomenclatura.CHAVE_SEGUNDARIA + "locacao_filme"))
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Filme filme;
 
 	@NotNull
-	@JoinColumn(name = "id_usuario", nullable = false, foreignKey = @ForeignKey(name = "fk_locacao_usuario"))
+	@JoinColumn(name = Nomenclatura.CHAVE_PRIMARIA + "usuario", nullable = false, 
+				foreignKey = @ForeignKey(name = Nomenclatura.CHAVE_SEGUNDARIA + "locacao_usuario"))
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Usuario usuario;
 
 	@NotNull
-	@Column(name = "dt_data_locacao", nullable = false)
+	@Column(name = Nomenclatura.DATA_HORA + "data_locacao", nullable = false)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDateTime dataLocacao;
 
 	@NotNull
-	@Column(name = "dt_data_devolucao", nullable = false)
+	@Column(name = Nomenclatura.DATA_HORA + "data_devolucao", nullable = false)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDateTime dataDevolucao;
 
 	@NotNull
-	@Column(name = "en_status", nullable = false)
+	@Column(name = Nomenclatura.ENUM +"status", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private StatusLocacao status;
 

@@ -23,43 +23,47 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.locadora.enumerators.GeneroUsuario;
+import com.locadora.multitenancy.AbstractTenant;
+import com.locadora.utils.Nomenclatura;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@Builder
+@Getter @Setter @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "usuario")
+@Table(name = Nomenclatura.TABELA + "usuario")
 @SuppressWarnings("serial")
-public class Usuario implements Serializable {
+public class Usuario extends AbstractTenant<Long> implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario_sequence")
-	@SequenceGenerator(name = "usuario_sequence", sequenceName = "usuario_id_sequence", allocationSize = 1)
-	@Column(name = "id_usuario", nullable = false)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario" + Nomenclatura.SEQUENCIA)
+	@SequenceGenerator(name = "usuario" + Nomenclatura.SEQUENCIA, sequenceName = "usuario_id" + Nomenclatura.SEQUENCIA, allocationSize = 1)
+	@Column(name = Nomenclatura.CHAVE_PRIMARIA +"usuario", nullable = false)
 	private Long id;
 
 	@NotBlank
 	@Size(min = 3, max = 100)
-	@Column(name = "ds_nome", nullable = false)
+	@Column(name = Nomenclatura.DESCRICAO +"nome", nullable = false)
 	private String nome;
 
 	@NotNull
-	@Column(name = "en_sexo", nullable = false)
+	@Column(name = Nomenclatura.ENUM +"sexo", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private GeneroUsuario sexo;
 
 	@NotNull
-	@Column(name = "dt_data_nascimento", nullable = false)
+	@Column(name = Nomenclatura.DATA_HORA +"data_nascimento", nullable = false)
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDateTime dataNascimento;
 
-	@NotNull
-	@Column(name = "nm_cpf", nullable = false)
-	private Long cpf;
+	@NotBlank
+	@Size(min = 11, max = 18)
+	@Column(name = Nomenclatura.DESCRICAO + "cpf", nullable = false)
+	private String cpf;
 
-	@Builder.Default
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
 	private Set<Locacao> locacoes = new HashSet<>();
 
