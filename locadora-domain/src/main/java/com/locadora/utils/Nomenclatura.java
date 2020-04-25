@@ -6,7 +6,7 @@ public class Nomenclatura {
 	public static final String VISAO = "vw_";
 	public static final String SEQUENCIA = "_sequence";
 	public static final String CHAVE_PRIMARIA = "id_";
-	public static final String CHAVE_SEGUNDARIA = "fk_";
+	public static final String CHAVE_SECUNDARIA = "fk_";
 	public static final String VALOR = "vl_";
 	public static final String DESCRICAO = "ds_";
 	public static final String DATA_HORA = "dt_";

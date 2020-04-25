@@ -30,10 +30,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter @Setter @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = Nomenclatura.TABELA + "filme")
+@Getter @Setter @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @SuppressWarnings("serial")
 public class Filme extends AbstractTenant<Long> implements Serializable {
 
@@ -59,7 +59,7 @@ public class Filme extends AbstractTenant<Long> implements Serializable {
 	private String diretor;
 
 	@Min(1970)
-	@Column(name = Nomenclatura.DATA_HORA + "anoLancamento", columnDefinition = "smallint", nullable = false)
+	@Column(name = Nomenclatura.NUMERICO + "anoLancamento", columnDefinition = "smallint", nullable = false)
 	private int anoLancamento;
 
 	@Min(1)

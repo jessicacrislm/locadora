@@ -20,8 +20,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.locadora.enumerators.GeneroUsuario;
 import com.locadora.multitenancy.AbstractTenant;
 import com.locadora.utils.Nomenclatura;
@@ -31,10 +30,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter @Setter @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
 @Entity
 @Table(name = Nomenclatura.TABELA + "usuario")
+@Getter @Setter @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @SuppressWarnings("serial")
 public class Usuario extends AbstractTenant<Long> implements Serializable {
 
@@ -56,7 +55,7 @@ public class Usuario extends AbstractTenant<Long> implements Serializable {
 
 	@NotNull
 	@Column(name = Nomenclatura.DATA_HORA +"data_nascimento", nullable = false)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDateTime dataNascimento;
 
 	@NotBlank

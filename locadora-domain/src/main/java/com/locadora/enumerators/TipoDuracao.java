@@ -6,9 +6,9 @@ public enum TipoDuracao {
     CINCO_DIAS("5 Dias", 5);
 	
 	private final String descricao;
-    private final int dias;
+    private final long dias;
     
-	private TipoDuracao(String descricao, int dias) {
+	private TipoDuracao(String descricao, long dias) {
 		this.descricao = descricao;
 		this.dias = dias;
 	}
@@ -17,7 +17,7 @@ public enum TipoDuracao {
 		return descricao;
 	}
 
-	public int getDias() {
+	public long getDias() {
 		return dias;
 	}
     

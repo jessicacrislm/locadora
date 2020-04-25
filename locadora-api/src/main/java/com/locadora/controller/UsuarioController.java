@@ -40,13 +40,12 @@ public class UsuarioController extends AbstractController<Usuario, UsuarioDTO, L
 	}
 
 	@Override
-	@SuppressWarnings("unlikely-arg-type")
 	@PostMapping(value = "/")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public void create(@Valid @RequestBody UsuarioDTO dto) {
 		Usuario usuario = converter.convertToEntity(dto);
 		log.debug(" >> create entity {} ", dto);
-		if (OK.equals(validar(usuario))) {
+		if (OK.equals(validar(usuario).getBody())) {
 			dto = getService().save(dto);
 		}
 		log.debug(" << create entity {} ", dto);
