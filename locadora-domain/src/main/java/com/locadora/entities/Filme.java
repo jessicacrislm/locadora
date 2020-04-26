@@ -1,6 +1,5 @@
 package com.locadora.entities;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,7 +21,6 @@ import javax.validation.constraints.Size;
 
 import com.locadora.enumerators.GeneroFilme;
 import com.locadora.enumerators.TipoFilme;
-import com.locadora.multitenancy.AbstractTenant;
 import com.locadora.utils.Nomenclatura;
 
 import lombok.EqualsAndHashCode;
@@ -32,14 +30,16 @@ import lombok.Setter;
 
 @Entity
 @Table(name = Nomenclatura.TABELA + "filme")
-@Getter @Setter @NoArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@SuppressWarnings("serial")
-public class Filme extends AbstractTenant<Long> implements Serializable {
+public class Filme implements Persistable<Long> {
 
 	@Id
 	@Column(name = Nomenclatura.CHAVE_PRIMARIA + "filme", nullable = false)
-	@SequenceGenerator(name = "filme_id" + Nomenclatura.SEQUENCIA, sequenceName = "filme_id" + Nomenclatura.SEQUENCIA, allocationSize = 1)
+	@SequenceGenerator(name = "filme_id" + Nomenclatura.SEQUENCIA, sequenceName = "filme_id"
+			+ Nomenclatura.SEQUENCIA, allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "filme_id" + Nomenclatura.SEQUENCIA)
 	private Long id;
 
@@ -59,7 +59,7 @@ public class Filme extends AbstractTenant<Long> implements Serializable {
 	private String diretor;
 
 	@Min(1970)
-	@Column(name = Nomenclatura.NUMERICO + "anoLancamento", columnDefinition = "smallint", nullable = false)
+	@Column(name = Nomenclatura.DATA_HORA + "ano_lancamento", columnDefinition = "smallint", nullable = false)
 	private int anoLancamento;
 
 	@Min(1)
@@ -73,4 +73,8 @@ public class Filme extends AbstractTenant<Long> implements Serializable {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "filme")
 	private Set<Locacao> locacoes = new HashSet<>();
+	
+	public Filme(Long id) {
+		this.id = id;
+	}
 }

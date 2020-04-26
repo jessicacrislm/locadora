@@ -10,15 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.locadora.converters.LocacaoConverter;
-import com.locadora.dto.FilmeDTO;
 import com.locadora.dto.LocacaoDTO;
-import com.locadora.dto.UsuarioDTO;
 import com.locadora.entities.Filme;
 import com.locadora.entities.Locacao;
 import com.locadora.entities.Usuario;
@@ -32,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/locacao")
+@RequestMapping("/api/locacao")
 public class LocacaoController extends AbstractController<Locacao, LocacaoDTO, Long> {
 
 	private static final String OK = "OK";
@@ -49,7 +48,6 @@ public class LocacaoController extends AbstractController<Locacao, LocacaoDTO, L
 	@Override
 	protected AbstractService<Locacao, LocacaoDTO, Long> getService() {
 		return this.service;
-
 	}
 
 	@Override
@@ -79,18 +77,18 @@ public class LocacaoController extends AbstractController<Locacao, LocacaoDTO, L
 		}
 	}
 	
-	@GetMapping(value = "/")
-	public List<LocacaoDTO> getAllByFilme(FilmeDTO filmeDTO) {
+	@GetMapping(value = "/filme/{id}")
+	public List<LocacaoDTO> getAllByFilme(@PathVariable Long id) {
 		log.debug(">> getAll {}");
-		List<LocacaoDTO> entities = service.findAllByFilme(filmeDTO);
+		List<LocacaoDTO> entities = service.findAllByFilme(id);
 		log.debug("<< getAll [entities={}] ", entities);
 		return entities;
 	}
 	
-	@GetMapping(value = "/")
-	public List<LocacaoDTO> getAllByUsuario(UsuarioDTO usuarioDTO) {
+	@GetMapping(value = "/usuario/{id}")
+	public List<LocacaoDTO> getAllByUsuario(@PathVariable Long id) {
 		log.debug(">> getAll {}");
-		List<LocacaoDTO> entities = service.findAllByUsuario(usuarioDTO);
+		List<LocacaoDTO> entities = service.findAllByUsuario(id);
 		log.debug("<< getAll [entities={}] ", entities);
 		return entities;
 	}

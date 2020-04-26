@@ -1,6 +1,5 @@
 package com.locadora.entities;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,7 +23,6 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.locadora.enumerators.StatusLocacao;
-import com.locadora.multitenancy.AbstractTenant;
 import com.locadora.utils.Nomenclatura;
 
 import lombok.EqualsAndHashCode;
@@ -36,8 +34,7 @@ import lombok.Setter;
 @Table(name = Nomenclatura.TABELA + "locacao")
 @Getter @Setter @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@SuppressWarnings("serial")
-public class Locacao extends AbstractTenant<Long> implements Serializable {
+public class Locacao implements Persistable<Long> {
 
 	@Id
 	@Column(name = Nomenclatura.CHAVE_PRIMARIA + "locacao", nullable = false)
@@ -65,8 +62,7 @@ public class Locacao extends AbstractTenant<Long> implements Serializable {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDateTime dataLocacao;
 
-	@NotNull
-	@Column(name = Nomenclatura.DATA_HORA + "data_devolucao", nullable = false)
+	@Column(name = Nomenclatura.DATA_HORA + "data_devolucao")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDateTime dataDevolucao;
 

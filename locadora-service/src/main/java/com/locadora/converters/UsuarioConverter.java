@@ -11,7 +11,6 @@ public class UsuarioConverter implements Converter<Usuario, UsuarioDTO> {
 
 	@Override
 	public Usuario convertToEntity(UsuarioDTO dto) {
-		// TO DO: LOMBOK contructor
 		Usuario entity = new Usuario();
 		BeanUtils.copyProperties(dto, entity);
 		return entity;

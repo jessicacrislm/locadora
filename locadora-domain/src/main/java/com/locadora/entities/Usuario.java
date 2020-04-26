@@ -1,6 +1,5 @@
 package com.locadora.entities;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,7 +21,6 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.locadora.enumerators.GeneroUsuario;
-import com.locadora.multitenancy.AbstractTenant;
 import com.locadora.utils.Nomenclatura;
 
 import lombok.EqualsAndHashCode;
@@ -34,8 +32,7 @@ import lombok.Setter;
 @Table(name = Nomenclatura.TABELA + "usuario")
 @Getter @Setter @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@SuppressWarnings("serial")
-public class Usuario extends AbstractTenant<Long> implements Serializable {
+public class Usuario implements Persistable<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario" + Nomenclatura.SEQUENCIA)

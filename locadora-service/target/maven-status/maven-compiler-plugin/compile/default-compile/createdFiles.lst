@@ -1,0 +1,10 @@
+com\locadora\converters\LocacaoConverter.class
+com\locadora\services\UsuarioService.class
+com\locadora\converters\FilmeConverter.class
+com\locadora\services\LocacaoService.class
+com\locadora\utils\ValidatorUtils.class
+com\locadora\services\AbstractService.class
+com\locadora\converters\Converter.class
+com\locadora\services\FilmeService.class
+com\locadora\converters\UsuarioConverter.class
+com\locadora\utils\StringUtils.class

@@ -10,7 +10,7 @@ import com.locadora.services.AbstractService;
 import com.locadora.services.FilmeService;
 
 @RestController
-@RequestMapping("/filme")
+@RequestMapping("/api/filme")
 public class FilmeController extends AbstractController<Filme, FilmeDTO, Long> {
 	
 	@Autowired

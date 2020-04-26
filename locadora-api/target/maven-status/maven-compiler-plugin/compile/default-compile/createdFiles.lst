@@ -1,2 +1,7 @@
-com\locadora\ServletInitializer.class
+com\locadora\controller\UsuarioController.class
+com\locadora\controller\FilmeController.class
 com\locadora\LocadoraApplication.class
+com\locadora\controller\LocacaoController.class
+com\locadora\ServletInitializer.class
+com\locadora\exceptionhandler\ServiceExceptionHandler.class
+com\locadora\controller\AbstractController.class

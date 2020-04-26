@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/api/usuario")
 public class UsuarioController extends AbstractController<Usuario, UsuarioDTO, Long> {
 
 	private static final String OK = "OK";

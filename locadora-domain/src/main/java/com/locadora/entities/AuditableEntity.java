@@ -40,13 +40,11 @@ public abstract class AuditableEntity<PK extends Serializable> implements Persis
 
 	@JsonIgnore
 	@CreatedDate
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name =  Nomenclatura.AUDITORIA + "data_criacao")
 	private LocalDateTime dataCriacao;
 	
 	@JsonIgnore
 	@LastModifiedDate
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name =  Nomenclatura.AUDITORIA + "data_modificacao")
 	private LocalDateTime dataModificacao;
 	

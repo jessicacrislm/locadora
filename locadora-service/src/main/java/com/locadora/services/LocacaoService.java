@@ -10,15 +10,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.locadora.converters.Converter;
-import com.locadora.converters.FilmeConverter;
 import com.locadora.converters.LocacaoConverter;
-import com.locadora.converters.UsuarioConverter;
-import com.locadora.dto.FilmeDTO;
 import com.locadora.dto.LocacaoDTO;
-import com.locadora.dto.UsuarioDTO;
-import com.locadora.entities.Filme;
 import com.locadora.entities.Locacao;
-import com.locadora.entities.Usuario;
 import com.locadora.repositories.LocacaoRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,12 +26,6 @@ public class LocacaoService extends AbstractService<Locacao, LocacaoDTO, Long> {
 	
 	@Autowired
 	private LocacaoConverter converter;
-	
-	@Autowired
-	private FilmeConverter filmeConverter;
-	
-	@Autowired
-	private UsuarioConverter usuarioConverter;
 
 	@Override
 	protected JpaRepository<Locacao, Long> getRepository() {
@@ -51,12 +39,11 @@ public class LocacaoService extends AbstractService<Locacao, LocacaoDTO, Long> {
 	
 	/**
 	 * Historico de locacoes de um determinado filme
-	 * @param filmeDTO o filme a ser pesquisado
+	 * @param id o id do filme a ser pesquisado
 	 * @return lista de locacoes de um filme
 	 */
-	public List<LocacaoDTO> findAllByFilme(FilmeDTO filmeDTO) {
-		Filme filme = filmeConverter.convertToEntity(filmeDTO);
-		List<Locacao> entities = repository.findAllByFilme(filme);
+	public List<LocacaoDTO> findAllByFilme(Long id) {	
+		List<Locacao> entities = repository.findAllByFilme(id);
 		log.debug(">> findAllByFilme [entities={}] ", entities);
 		List<LocacaoDTO> dtos = entities.parallelStream().map(entity -> getConverter().convertToDTO(entity)).collect(Collectors.toList());
 		log.debug("<< findAllByFilme [entities={}] ", entities);
@@ -65,12 +52,11 @@ public class LocacaoService extends AbstractService<Locacao, LocacaoDTO, Long> {
 
 	/**
 	 * Historico de locacoes de um determinado usuario
-	 * @param usuarioDTO o usuario a ser pesquisado
+	 * @param id o id do usuario a ser pesquisado
 	 * @return lista de locacoes de um usuario
 	 */
-	public List<LocacaoDTO> findAllByUsuario(UsuarioDTO usuarioDTO) {
-		Usuario usuario = usuarioConverter.convertToEntity(usuarioDTO);
-		List<Locacao> entities = repository.findAllByUsuario(usuario);
+	public List<LocacaoDTO> findAllByUsuario(Long id) {
+		List<Locacao> entities = repository.findAllByUsuario(id);
 		log.debug(">> findAllByUsuario [entities={}] ", entities);
 		List<LocacaoDTO> dtos = entities.parallelStream().map(entity -> getConverter().convertToDTO(entity)).collect(Collectors.toList());
 		log.debug("<< findAllByUsuario [entities={}] ", entities);
