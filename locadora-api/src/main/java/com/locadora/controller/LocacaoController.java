@@ -118,11 +118,11 @@ public class LocacaoController extends AbstractController<Locacao, LocacaoDTO, L
 	}
 
 	public int getQuantidadeLocados(Usuario usuario) {
-		return repository.countByUsuario(usuario).size();
+		return repository.countByUsuario(usuario.getId());
 	}
 
 	public int getQuantidadeDisponiveis(Filme filme) {
-		int locados = repository.countByFilme(filme).size();
+		int locados = repository.countByFilme(filme.getId());
 		int estoque = filme.getQuantidade();
 		return estoque - locados;
 	}

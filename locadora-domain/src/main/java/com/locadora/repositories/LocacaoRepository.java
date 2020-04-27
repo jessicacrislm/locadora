@@ -8,9 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.locadora.entities.Filme;
 import com.locadora.entities.Locacao;
-import com.locadora.entities.Usuario;
 
 @Repository
 public interface LocacaoRepository extends JpaRepository<Locacao, Long> {
@@ -18,17 +16,17 @@ public interface LocacaoRepository extends JpaRepository<Locacao, Long> {
 	@Query("SELECT l FROM Locacao l WHERE l.dataDevolucao>=(:date)")
 	List<Locacao> findLocacoesAbertas(@Param("date") Date dataAtual);
 
-	@Query("SELECT l FROM Locacao l WHERE l.filme.id=(:id)")
-	List<Locacao> findAllByFilme(@Param("id") Long id);
+	@Query("SELECT l FROM Locacao l WHERE l.filme.id=(:idFilme)")
+	List<Locacao> findAllByFilme(@Param("idFilme") Long idFilme);
 
-	@Query("SELECT l FROM Locacao l WHERE l.usuario.id=(:id)")
-	List<Locacao> findAllByUsuario(@Param("id") Long id);
+	@Query("SELECT l FROM Locacao l WHERE l.usuario.id=(:idUsuario)")
+	List<Locacao> findAllByUsuario(@Param("idUsuario") Long idUsuario);
 
-	@Query("SELECT l FROM Locacao l WHERE l.filme=(:filme) and (l.status = 'ABERTO')")
-	List<Locacao> countByFilme(@Param("filme") Filme filme);
+	@Query("SELECT count(l.id) FROM Locacao l WHERE l.filme.id=(:idFilme) and (l.status = 'ABERTO')")
+	int countByFilme(@Param("idFilme") Long idFilme);
 
-	@Query("SELECT l FROM Locacao l WHERE l.usuario = (:user) and (l.status = 'ABERTO')")
-	List<Locacao> countByUsuario(@Param("user") Usuario usuario);
+	@Query("SELECT count(l.id) FROM Locacao l WHERE l.usuario.id=(:idUsuario) and (l.status = 'ABERTO')")
+	int countByUsuario(@Param("idUsuario") Long idUsuario);
 
 	@Query("SELECT l from Locacao l WHERE l.status = 'RENOVADO' AND l.id = (:locacao)")
 	List<Locacao> findRenovacoesByLocacao(@Param("locacao") Long locacao);
