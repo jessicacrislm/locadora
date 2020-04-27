@@ -1,6 +1,6 @@
 package com.locadora.entities;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -53,7 +53,7 @@ public class Usuario implements Persistable<Long> {
 	@NotNull
 	@Column(name = Nomenclatura.DATA_HORA +"data_nascimento", nullable = false)
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDateTime dataNascimento;
+	private Date dataNascimento;
 
 	@NotBlank
 	@Size(min = 11, max = 18)

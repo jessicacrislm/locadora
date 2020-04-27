@@ -1,6 +1,6 @@
 package com.locadora.entities;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,8 +20,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.locadora.enumerators.StatusLocacao;
 import com.locadora.utils.Nomenclatura;
 
@@ -59,12 +58,12 @@ public class Locacao implements Persistable<Long> {
 
 	@NotNull
 	@Column(name = Nomenclatura.DATA_HORA + "data_locacao", nullable = false)
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private LocalDateTime dataLocacao;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private Date dataLocacao;
 
 	@Column(name = Nomenclatura.DATA_HORA + "data_devolucao")
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private LocalDateTime dataDevolucao;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private Date dataDevolucao;
 
 	@NotNull
 	@Column(name = Nomenclatura.ENUM +"status", nullable = false)

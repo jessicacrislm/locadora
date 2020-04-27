@@ -1,4 +1,5 @@
 com\locadora\controller\UsuarioController.class
+com\locadora\config\CorsFilter.class
 com\locadora\controller\FilmeController.class
 com\locadora\LocadoraApplication.class
 com\locadora\controller\LocacaoController.class

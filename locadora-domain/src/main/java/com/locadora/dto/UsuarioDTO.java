@@ -1,6 +1,6 @@
 package com.locadora.dto;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -16,7 +16,7 @@ public class UsuarioDTO extends BaseDTO {
 	private Long id;
 	private String nome;
 	private GeneroUsuario sexo;
-	private LocalDateTime dataNascimento;
+	private Date dataNascimento;
 	@CPF
 	private String cpf;
 

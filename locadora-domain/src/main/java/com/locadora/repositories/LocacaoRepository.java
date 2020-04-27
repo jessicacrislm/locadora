@@ -1,6 +1,6 @@
 package com.locadora.repositories;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,7 +16,7 @@ import com.locadora.entities.Usuario;
 public interface LocacaoRepository extends JpaRepository<Locacao, Long> {
 
 	@Query("SELECT l FROM Locacao l WHERE l.dataDevolucao>=(:date)")
-	List<Locacao> findLocacoesAbertas(@Param("date") LocalDateTime dataAtual);
+	List<Locacao> findLocacoesAbertas(@Param("date") Date dataAtual);
 
 	@Query("SELECT l FROM Locacao l WHERE l.filme.id=(:id)")
 	List<Locacao> findAllByFilme(@Param("id") Long id);

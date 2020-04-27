@@ -1,11 +1,12 @@
 package com.locadora.controller;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -69,8 +70,8 @@ public class LocacaoController extends AbstractController<Locacao, LocacaoDTO, L
 			renovacao.setLocacaoPrincipal(locacao.getId());
 			renovacao.setFilme(locacao.getFilme());
 			renovacao.setUsuario(locacao.getUsuario());
-			renovacao.setDataLocacao(LocalDateTime.now());
-			renovacao.setDataDevolucao(LocalDateTime.now().plusDays(locacao.getFilme().getTipo().getTipoDuracao().getDias()));
+			renovacao.setDataLocacao(new Date());
+			renovacao.setDataDevolucao(DateUtils.addDays(new Date(),(locacao.getFilme().getTipo().getTipoDuracao().getDias())));
 			renovacao.setStatus(StatusLocacao.RENOVADO);
 			LocacaoDTO renovacaoDTO = converter.convertToDTO(renovacao);
 			create(renovacaoDTO);

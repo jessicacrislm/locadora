@@ -1,7 +1,8 @@
-C:\Users\Jessica\Documents\locadora\git\locadora-backend\locadora\locadora-api\src\main\java\com\locadora\controller\AbstractController.java
-C:\Users\Jessica\Documents\locadora\git\locadora-backend\locadora\locadora-api\src\main\java\com\locadora\exceptionhandler\ServiceExceptionHandler.java
-C:\Users\Jessica\Documents\locadora\git\locadora-backend\locadora\locadora-api\src\main\java\com\locadora\LocadoraApplication.java
-C:\Users\Jessica\Documents\locadora\git\locadora-backend\locadora\locadora-api\src\main\java\com\locadora\controller\FilmeController.java
-C:\Users\Jessica\Documents\locadora\git\locadora-backend\locadora\locadora-api\src\main\java\com\locadora\controller\UsuarioController.java
-C:\Users\Jessica\Documents\locadora\git\locadora-backend\locadora\locadora-api\src\main\java\com\locadora\controller\LocacaoController.java
-C:\Users\Jessica\Documents\locadora\git\locadora-backend\locadora\locadora-api\src\main\java\com\locadora\ServletInitializer.java
+C:\Users\Jessica\Documents\locadora\git\locadora\locadora-api\src\main\java\com\locadora\controller\AbstractController.java
+C:\Users\Jessica\Documents\locadora\git\locadora\locadora-api\src\main\java\com\locadora\LocadoraApplication.java
+C:\Users\Jessica\Documents\locadora\git\locadora\locadora-api\src\main\java\com\locadora\config\CorsFilter.java
+C:\Users\Jessica\Documents\locadora\git\locadora\locadora-api\src\main\java\com\locadora\controller\LocacaoController.java
+C:\Users\Jessica\Documents\locadora\git\locadora\locadora-api\src\main\java\com\locadora\ServletInitializer.java
+C:\Users\Jessica\Documents\locadora\git\locadora\locadora-api\src\main\java\com\locadora\controller\FilmeController.java
+C:\Users\Jessica\Documents\locadora\git\locadora\locadora-api\src\main\java\com\locadora\controller\UsuarioController.java
+C:\Users\Jessica\Documents\locadora\git\locadora\locadora-api\src\main\java\com\locadora\exceptionhandler\ServiceExceptionHandler.java

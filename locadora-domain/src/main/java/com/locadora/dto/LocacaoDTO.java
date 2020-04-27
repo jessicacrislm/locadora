@@ -1,7 +1,7 @@
 package com.locadora.dto;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.locadora.enumerators.StatusLocacao;
@@ -16,8 +16,8 @@ public class LocacaoDTO extends BaseDTO {
 	private Long id;
 	private FilmeDTO filme;
 	private UsuarioDTO usuario;
-	private LocalDateTime dataLocacao;
-	private LocalDateTime dataDevolucao;
+	private Date dataLocacao;
+	private Date dataDevolucao;
 	private StatusLocacao status;
 	private List<LocacaoDTO> locacoes = new ArrayList<>();
 

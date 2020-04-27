@@ -1,6 +1,7 @@
 package com.locadora.utils;
 
-import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.InputMismatchException;
 
 public class ValidatorUtils {
@@ -51,29 +52,33 @@ public class ValidatorUtils {
 		}
 	}
 
-	public static boolean validaDataNascimento(LocalDateTime dataNascimento) {
-		LocalDateTime dataAtual = LocalDateTime.now();
-		return dataNascimento.isAfter(dataAtual);
+	public static boolean validaDataNascimento(Date dataNascimento) {
+		Date dataAtual = new Date();
+		return dataNascimento.after(dataAtual);
 	}
 
-	public static boolean validaDataDevolucao(LocalDateTime dataDevolucao) {
-		LocalDateTime dataAtual = LocalDateTime.now();
-		return dataDevolucao.isBefore(dataAtual);
+	public static boolean validaDataDevolucao(Date dataDevolucao) {
+		Date dataAtual = new Date();
+		return dataDevolucao.before(dataAtual);
 
 	}
 
-	public static boolean isMaioridade(LocalDateTime dataNascimento) {
-		LocalDateTime dataAtual = LocalDateTime.now();
-		int idade = dataAtual.getYear() - dataNascimento.getYear();
+	public static boolean isMaioridade(Date dataNascimento) {
+		Calendar cAtual = Calendar.getInstance();
+		Calendar cNasc = Calendar.getInstance();
+		cAtual.setTime(new Date());
+		cNasc.setTime(dataNascimento);
+
+		int idade = cAtual.get(Calendar.YEAR) - cNasc.get(Calendar.YEAR);
 
 		// checar se já aniversariou esse ano
-		if ((idade == 18) && (dataAtual.getMonthValue() < dataNascimento.getMonthValue())
-				|| ((dataAtual.getMonthValue() == dataNascimento.getMonthValue())
-						&& dataAtual.getDayOfMonth() < dataNascimento.getDayOfMonth())) {
+		if ((idade == 18) && (cAtual.get(Calendar.MONTH) < cNasc.get(Calendar.MONTH))
+				|| ((cAtual.get(Calendar.MONTH) == cNasc.get(Calendar.MONTH))
+						&& cAtual.get(Calendar.DAY_OF_MONTH) < cNasc.get(Calendar.DAY_OF_MONTH))) {
 			idade--;
 		}
 
 		return idade >= 18;
 	}
-	
+
 }
