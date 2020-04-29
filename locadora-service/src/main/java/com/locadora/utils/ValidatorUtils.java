@@ -51,7 +51,7 @@ public class ValidatorUtils {
 			return false;
 		}
 	}
-
+	
 	public static boolean validaDataNascimento(Date dataNascimento) {
 		Date dataAtual = new Date();
 		return dataNascimento.after(dataAtual);

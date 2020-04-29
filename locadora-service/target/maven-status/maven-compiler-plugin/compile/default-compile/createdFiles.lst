@@ -7,4 +7,4 @@ com\locadora\services\AbstractService.class
 com\locadora\converters\Converter.class
 com\locadora\services\FilmeService.class
 com\locadora\converters\UsuarioConverter.class
-com\locadora\utils\StringUtils.class
+com\locadora\utils\LocadoraStringUtils.class

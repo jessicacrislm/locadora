@@ -32,8 +32,8 @@ public class LocacaoConverter implements Converter<Locacao, LocacaoDTO> {
 	public Locacao convertToEntity(LocacaoDTO dto) {
 		Locacao entity = new Locacao();
 		BeanUtils.copyProperties(dto, entity);
-		Filme filme = filmeRepository.getOne(filmeConverter.convertToEntity(dto.getFilme()).getId());
-		Usuario usuario = usuarioRepository.getOne(usuarioConverter.convertToEntity(dto.getUsuario()).getId());
+		Filme filme = filmeRepository.getOne(dto.getIdFilme());
+		Usuario usuario = usuarioRepository.getOne(dto.getIdUsuario());
 		entity.setFilme(filme);
 		entity.setUsuario(usuario);
 		return entity;
@@ -43,8 +43,8 @@ public class LocacaoConverter implements Converter<Locacao, LocacaoDTO> {
 	public LocacaoDTO convertToDTO(Locacao entity) {
 		LocacaoDTO dto = new LocacaoDTO();
 		BeanUtils.copyProperties(entity, dto);
-		dto.setFilme(filmeConverter.convertToDTO(entity.getFilme()));
-		dto.setUsuario(usuarioConverter.convertToDTO(entity.getUsuario()));
+		dto.setIdFilme(filmeConverter.convertToDTO(entity.getFilme()).getId());
+		dto.setIdUsuario(usuarioConverter.convertToDTO(entity.getUsuario()).getId());
 		dto.setLocacoes(entity.getLocacoes().parallelStream().map(this::convertToDTO).collect(Collectors.toList()));
 		return dto;
 	}

@@ -80,10 +80,11 @@ public abstract class AbstractService<T extends Persistable<PK>, DTO extends Bas
 	 * @return A lista de todos os objetos 
 	 */
 	public List<DTO> findAll(){
+		log.debug(">> findAll");
 		List<T> entities = getRepository().findAll();
 		log.debug("<< findAll [entities={}] ", entities);
 		List<DTO> dtos = entities.parallelStream().map(entity -> getConverter().convertToDTO(entity)).collect(Collectors.toList());
-		log.debug("<< findAll [entities={}] ", entities);
+		log.debug("<< findAll [dtos={}] ", dtos);
 		return dtos;
 	}
 	

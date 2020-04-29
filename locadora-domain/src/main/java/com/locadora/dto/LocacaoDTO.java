@@ -14,8 +14,8 @@ import lombok.Setter;
 public class LocacaoDTO extends BaseDTO {
 
 	private Long id;
-	private FilmeDTO filme;
-	private UsuarioDTO usuario;
+	private Long idFilme;
+	private Long idUsuario;
 	private Date dataLocacao;
 	private Date dataDevolucao;
 	private StatusLocacao status;

@@ -31,7 +31,7 @@ public class FilmeControllerTest {
 	public void testCreateFilme() throws JsonProcessingException {
 		FilmeDTO dto = new FilmeDTO();
 		dto.setTitulo("Teste nome");
-		dto.setGenero(GeneroFilme.COMEDIA);
+		dto.setGenero(GeneroFilme.TERROR);
 		dto.setDiretor("Teste diretor");
 		dto.setAnoLancamento(2019);
 		dto.setQuantidade(2);
